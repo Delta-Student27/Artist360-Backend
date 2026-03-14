@@ -1,4 +1,4 @@
-package com.artist360.service;
+package com.example.art.demo.service;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.stereotype.Service;

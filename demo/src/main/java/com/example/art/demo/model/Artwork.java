@@ -1,63 +1,68 @@
-public Long getId() {
-    return id;
-}
+package com.example.art.demo.model;
+import jakarta.persistence.*;
 
-public void setId(Long id) {
-    this.id = id;
-}
+import java.time.LocalDateTime;
 
-public String getTitle() {
-    return title;
-}
+@Entity
+@Table(name = "artworks")
+public class Artwork {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-public void setTitle(String title) {
-    this.title = title;
-}
+    private String title;
 
-public String getDescription() {
-    return description;
-}
+    private String description;
 
-public void setDescription(String description) {
-    this.description = description;
-}
+    private String imageUrl;
 
-public String getImageUrl() {
-    return imageUrl;
-}
+    private LocalDateTime createdAt;
 
-public void setImageUrl(String imageUrl) {
-    this.imageUrl = imageUrl;
-}
+    @ManyToOne
+    @JoinColumn(name = "artist_id")
+    private User artist;
 
-public LocalDateTime getUploadedAt() {
-    return uploadedAt;
-}
+    public Artwork() {
+        this.createdAt = LocalDateTime.now();
+    }
 
-public void setUploadedAt(LocalDateTime uploadedAt) {
-    this.uploadedAt = uploadedAt;
-}
+    public Long getId() {
+        return id;
+    }
 
-public User getArtist() {
-    return artist;
-}
+    public String getTitle() {
+        return title;
+    }
 
-public void setArtist(User artist) {
-    this.artist = artist;
-}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-public List<Comment> getComments() {
-    return comments;
-}
+    public String getDescription() {
+        return description;
+    }
 
-public void setComments(List<Comment> comments) {
-    this.comments = comments;
-}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-public List<Like> getLikes() {
-    return likes;
-}
+    public String getImageUrl() {
+        return imageUrl;
+    }
 
-public void setLikes(List<Like> likes) {
-    this.likes = likes;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public User getArtist() {
+        return artist;
+    }
+
+    public void setArtist(User artist) {
+        this.artist = artist;
+    }
 }

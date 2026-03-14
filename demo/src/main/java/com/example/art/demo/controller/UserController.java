@@ -1,4 +1,4 @@
 package com.example.art.demo.controller;
 
-public class AuthController {
+public class UserController {
 }
