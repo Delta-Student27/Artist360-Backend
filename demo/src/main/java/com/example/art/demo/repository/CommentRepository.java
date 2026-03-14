@@ -1,7 +1,7 @@
-package com.artist360.repository;
+package com.example.art.demo.repository;
 
-import com.artist360.model.Comment;
-import com.artist360.model.Artwork;
+import com.example.art.demo.model.Artwork;
+import com.example.art.demo.model.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 

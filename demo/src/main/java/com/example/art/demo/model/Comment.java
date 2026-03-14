@@ -1,39 +1,59 @@
-public Long getId() {
-    return id;
-}
+package com.example.art.demo.model;
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
-public void setId(Long id) {
-    this.id = id;
-}
+@Entity
+@Table(name = "comments")
+public class Comment {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-public String getText() {
-    return text;
-}
+    private String comment;
 
-public void setText(String text) {
-    this.text = text;
-}
+    private LocalDateTime createdAt;
 
-public LocalDateTime getCreatedAt() {
-    return createdAt;
-}
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-public void setCreatedAt(LocalDateTime createdAt) {
-    this.createdAt = createdAt;
-}
+    @ManyToOne
+    @JoinColumn(name = "artwork_id")
+    private Artwork artwork;
 
-public User getUser() {
-    return user;
-}
+    public Comment() {
+        this.createdAt = LocalDateTime.now();
+    }
 
-public void setUser(User user) {
-    this.user = user;
-}
+    public Long getId() {
+        return id;
+    }
 
-public Artwork getArtwork() {
-    return artwork;
-}
+    public String getComment() {
+        return comment;
+    }
 
-public void setArtwork(Artwork artwork) {
-    this.artwork = artwork;
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Artwork getArtwork() {
+        return artwork;
+    }
+
+    public void setArtwork(Artwork artwork) {
+        this.artwork = artwork;
+    }
 }

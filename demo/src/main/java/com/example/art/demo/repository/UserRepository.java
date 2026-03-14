@@ -1,6 +1,7 @@
-package com.artist360.repository;
+package com.example.art.demo.repository;
 
-import com.artist360.model.User;
+
+import com.example.art.demo.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 

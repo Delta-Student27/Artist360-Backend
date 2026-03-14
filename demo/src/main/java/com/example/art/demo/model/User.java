@@ -1,4 +1,4 @@
-package com.artist360.model;
+package com.example.art.demo.model;
 
 import jakarta.persistence.*;
 import java.util.List;
