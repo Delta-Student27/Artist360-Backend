@@ -1,11 +1,16 @@
 package com.example.art.demo.model;
-import jakarta.persistence.*;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "artworks")
 public class Artwork {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,9 +23,31 @@ public class Artwork {
 
     private LocalDateTime createdAt;
 
+    // ⭐ Rating information
+    private Double averageRating = 0.0;
+
+    private Integer ratingCount = 0;
+
+    // Artist relation
     @ManyToOne
     @JoinColumn(name = "artist_id")
+    @JsonIgnoreProperties("artworks")
     private User artist;
+
+    // Comments relation
+    @OneToMany(mappedBy = "artwork", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Comment> comments;
+
+    // Likes relation
+    @OneToMany(mappedBy = "artwork", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Like> likes;
+
+    // Ratings relation
+    @OneToMany(mappedBy = "artwork", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Rating> ratings;
 
     public Artwork() {
         this.createdAt = LocalDateTime.now();
@@ -64,5 +91,45 @@ public class Artwork {
 
     public void setArtist(User artist) {
         this.artist = artist;
+    }
+
+    public Double getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(Double averageRating) {
+        this.averageRating = averageRating;
+    }
+
+    public Integer getRatingCount() {
+        return ratingCount;
+    }
+
+    public void setRatingCount(Integer ratingCount) {
+        this.ratingCount = ratingCount;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public List<Like> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<Like> likes) {
+        this.likes = likes;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
     }
 }
